@@ -1,0 +1,40 @@
+.App {
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1em;
+}
+
+.start {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1em;
+}
+
+.start p {
+  color: #ddd205;
+  font-size: 13px;
+  padding: 1em;
+}
+.start button {
+  background-color: #2f46b7;
+  color: #ffffff;
+  font-weight: bold;
+  width: 25%;
+  padding: 7px;
+  margin-top: 10px;
+  border: 3px solid #0698f3;
+  border-radius: 10px;
+  cursor: pointer;
+
+}
+.start button:hover{
+background-color: #0f0fd9;
+color: #ddd205;
+transition: 1s;
+
+}
