@@ -1,9 +1,11 @@
 //css
 import "./GameOverScreen.css"
 
-const GameOverScreen = () => {
+const GameOverScreen = ({retry}) => {
   return (
-    <div>GameOverScreen</div>
+    <div className="over">GameOverScreen
+      <button onClick={retry}> voltar para o menu</button>
+    </div>
   )
 }
 

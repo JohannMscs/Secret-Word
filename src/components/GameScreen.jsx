@@ -1,9 +1,14 @@
 //css
 import "./GameScreen.css"
 
-const GameScreen = () => {
+const GameScreen = ({verifyletter}) => {
   return (
-    <div>GameScreen</div>
+    <div className="game">GameScreen
+      <h1>Game</h1>
+      <button onClick={verifyletter}> finalizar jogo</button>
+
+
+    </div>
   )
 }
 

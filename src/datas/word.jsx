@@ -1,4 +1,4 @@
 export const wordList = {
-carro: ["motor"],
-casa: ["porta"]
+carro: ["motor", "porta-malas"],
+casa: ["porta", "banheiro"]
 }
