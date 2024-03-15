@@ -18,6 +18,8 @@ const stages = [
   { id: 3, name: "end" },
 ];
 
+const guessesNumber = 3
+
 function App() {
   const [gameStage, setGameStage] = useState(stages[0].name);
   const [word] = useState(wordList);
@@ -25,6 +27,11 @@ function App() {
   const [pickWord, setPickWord] = useState("");
   const [pickCategory, setPickCategory] = useState("");
   const [letters, setLetters] = useState([]);
+
+  const [guessedLetters, setGuessedLetters] = useState([])
+  const [wrongLetters, setWrongLetters] = useState([])
+  const [guesses, setGuesses] = useState(guessesNumber)
+  const [score, setScore] = useState(0)
 
   const pickWordAndCategory = () => {
     //escolher a palavra e a categoria
@@ -54,16 +61,53 @@ function App() {
 
     setPickWord(words);
     setPickCategory(category);
-    setLetters(letters);
+    setLetters(wordsLetters);
   };
 
   //processamento da letra de entrada
-  const verifyletter = () => {
-    setGameStage(stages[2].name);
+  const verifyletters = (letter) => {
+
+    const normalizedLetter = letter.toLowerCase()
+
+    if(guessedLetters.includes(normalizedLetter) || wrongLetters.includes(normalizedLetter)
+    ){
+  return;
+  }
+  if(letters.includes(normalizedLetter)) {
+    setGuessedLetters((actualGuessedLetters) => [
+      ...actualGuessedLetters, letter
+    ])
+  }
+    else{
+      setWrongLetters((actualWrongLetters) => [
+        ...actualWrongLetters, normalizedLetter
+      ])
+      setGuesses((actualGuesses) => actualGuesses - 1)
+    }
+    
+    console.log(guessedLetters)
+    console.log(wrongLetters)
+  
+    
   };
+
+  const clearLetterStages = () =>{
+    setGuessedLetters([])
+    setWrongLetters([])
+  }
+
+  useEffect(() => {
+    if(guesses <= 0){
+      //reseta todos os estagios
+      clearLetterStages()
+      setGameStage(stages[2].name)
+    }
+  }, [guesses])
 
   //recomeçar o jogo
   const retry = () => {
+    setScore(0)
+    setGuesses(guessesNumber)
     setGameStage(stages[0].name);
   };
 
@@ -72,7 +116,7 @@ function App() {
       <h1 className="master_title">Secret Word</h1>
       <div className="modes">
         {gameStage === "start" && <StartScreen startGame={startGame} />}
-        {gameStage === "game" && <GameScreen verifyletter={verifyletter} />}
+        {gameStage === "game" && <GameScreen verifyletters={verifyletters} pickWord={pickWord} pickCategory={pickCategory} letters={letters} guessedLetters={guessedLetters} wrongLetters={wrongLetters} guesses={guesses} score={score}  />}
         {gameStage === "end" && <GameOverScreen retry={retry} />}
       </div>
     </div>

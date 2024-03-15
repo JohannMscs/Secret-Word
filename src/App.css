@@ -51,13 +51,12 @@ color: #ddd205;
 transition: 1s;
 
 }
-@media (min-width: 600px) {
-  .start button, .game button, .over button{
-    width: 20%;
-  }
-}
-@media (min-width: 1080px) {
-  .start button, .game button, .over button {
-    width: 12%;
-  }
-}
+
+
+
+
+
+
+
+
+
